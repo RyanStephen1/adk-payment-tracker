@@ -732,7 +732,7 @@ export default function ExcelTracker() {
               status: w.status,
               remarks: w.remarks
             });
-          }
+          });
         }
       });
 
