@@ -726,7 +726,7 @@ export default function ExcelTracker() {
               row_id: r.id,
               worker_name: w.workerName,
               pay_date: w.payDate || null,
-
+              amount: w.fullAmount,
               full_amount: w.fullAmount,
               paid_amount: w.paidAmount,
               status: w.status,
@@ -1194,6 +1194,7 @@ export default function ExcelTracker() {
               row_id: newId,
               worker_name: w.workerName,
               pay_date: w.payDate || null,
+              amount: w.fullAmount,
               full_amount: w.fullAmount,
               paid_amount: w.paidAmount,
               status: w.status,
@@ -1420,6 +1421,7 @@ export default function ExcelTracker() {
             row_id: breakdownModalRowId,
             worker_name: newItem.workerName,
             pay_date: newItem.payDate || null,
+            amount: newItem.fullAmount,
             full_amount: newItem.fullAmount,
             paid_amount: newItem.paidAmount,
             status: newItem.status,
@@ -1469,6 +1471,7 @@ export default function ExcelTracker() {
           const { error } = await client.from('workers_breakdown').update({
             worker_name: name,
             pay_date: payDate || null,
+            amount: fullAmount,
             full_amount: fullAmount,
             paid_amount: paidAmount,
             status,
