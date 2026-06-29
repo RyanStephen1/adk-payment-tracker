@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "api/export-pdf.mjs": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

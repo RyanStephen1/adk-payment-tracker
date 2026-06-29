@@ -1,0 +1,6 @@
+{
+  "name": "Payment Details Tracker",
+  "description": "Excel-style financial payment tracker with pending status, live calculations, filtering, and high-quality PDF, PNG, and JPEG export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
