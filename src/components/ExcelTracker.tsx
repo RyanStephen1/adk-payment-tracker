@@ -522,7 +522,21 @@ export default function ExcelTracker() {
               remarks: w.remarks || ''
             }))
         }));
-        setRows(mappedRows);
+        // Merge local rows into remote — keep local when values differ (unsaved edits)
+        setRows(prevRows => {
+          const merged = new Map(mappedRows.map(r => [r.id, r]));
+          for (const local of prevRows) {
+            const remote = merged.get(local.id);
+            if (!remote) {
+              // Row exists only locally (not yet synced)
+              merged.set(local.id, local);
+            } else if (local.paidAmount !== remote.paidAmount || local.fullAmount !== remote.fullAmount) {
+              // Local has unsaved changes — keep local version
+              merged.set(local.id, local);
+            }
+          }
+          return Array.from(merged.values());
+        });
       }
 
       setDbConnected(true);
@@ -860,7 +874,21 @@ export default function ExcelTracker() {
       showToast("Overpayment detected! Excess distributed to next entries in block.", 'success');
     }
 
+    // Force persist to localStorage immediately so it survives reload
+    try {
+      const currentRows = JSON.parse(localStorage.getItem('payment_rows') || '[]');
+      const rowsMap = new Map(currentRows.map((r: any) => [r.id, r]));
+      for (const mod of modifiedRows) {
+        const existing = rowsMap.get(mod.id);
+        if (existing) {
+          rowsMap.set(mod.id, { ...existing, ...mod.updates });
+        }
+      }
+      localStorage.setItem('payment_rows', JSON.stringify(Array.from(rowsMap.values())));
+    } catch (_) {}
+
     // Sync all modified rows to Supabase
+    let supabaseFailed = false;
     if (dbConnected && modifiedRows.length > 0) {
       const client = getSupabaseClient();
       if (client) {
@@ -870,10 +898,13 @@ export default function ExcelTracker() {
             if (error) throw error;
           } catch (e) {
             console.error("Supabase update error:", e);
-            showToast("Offline update cached. DB sync failed.", 'info');
+            supabaseFailed = true;
           }
         }
       }
+    }
+    if (supabaseFailed) {
+      showToast("Offline update cached. DB sync failed.", 'info');
     }
   };
 
