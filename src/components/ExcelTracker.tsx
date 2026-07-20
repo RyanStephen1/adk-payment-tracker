@@ -1901,7 +1901,7 @@ export default function ExcelTracker() {
 
     const css = `
       @page { margin: 18mm 14mm 22mm; size: ${format} ${format === 'A3' ? 'landscape' : 'portrait'}; page-break-inside: auto; }
-      body { margin: 0; padding: ${format === 'A3' ? '40px' : '32px'}; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; background: #f8fafc; }
+      body { margin: 0; padding: ${format === 'A3' ? '40px' : '32px'}; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-weight: 400; color: #1e293b; background: #f8fafc; }
       .rp { max-width: ${format === 'A3' ? '1400px' : '1060px'}; margin: 0 auto; }
 
       .hd { text-align: center; padding: 44px 0 30px; border-bottom: 3px solid #059669; margin-bottom: 32px; }
@@ -1930,7 +1930,7 @@ export default function ExcelTracker() {
       thead { display: table-header-group; }
       thead th { background: #1e293b; color: #fff; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.4px; padding: 9px 10px; text-align: left; }
       thead th.am { text-align: right; }
-      tbody td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: top; }
+      tbody td { padding: 8px 10px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: top; font-weight: 400; }
       tbody tr { page-break-inside: avoid; }
       tbody tr:nth-child(even) { background: #f8fafc; }
       .no { font-weight: 500; color: #94a3b8; text-align: center; }

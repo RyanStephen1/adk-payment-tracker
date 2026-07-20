@@ -111,7 +111,7 @@ export default function WorkerBreakdownModal({
 
     const css = `
       @page { margin: 18mm 14mm 22mm; size: A4 portrait; }
-      body { margin: 0; padding: 32px; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1e293b; background: #f8fafc; }
+      body { margin: 0; padding: 32px; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-weight: 400; color: #1e293b; background: #f8fafc; }
       .rp { max-width: 1060px; margin: 0 auto; }
       .hd { text-align: center; padding: 36px 0 24px; border-bottom: 3px solid #059669; margin-bottom: 28px; }
       .hd h1 { font-size: 26px; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
@@ -130,7 +130,7 @@ export default function WorkerBreakdownModal({
       thead th { background: #1e293b; color: #fff; font-weight: 600; font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px; padding: 9px 10px; text-align: left; }
       thead th.am { text-align: right; }
       thead th.st { text-align: center; }
-      tbody td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; color: #334155; }
+      tbody td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; color: #334155; font-weight: 400; }
       tbody tr:nth-child(even) { background: #f8fafc; }
       .no { color: #94a3b8; text-align: center; font-weight: 500; width: 32px; }
       .dt { color: #64748b; white-space: nowrap; }
